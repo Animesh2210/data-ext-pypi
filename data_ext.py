@@ -1,6 +1,5 @@
 from multiprocessing.spawn import import_main_path
 import requests
-import pprint
 import json
 import csv
 
@@ -9,7 +8,7 @@ try:
      import xmlrpclib
 except ImportError:
      import xmlrpc.client as xmlrpclib
-
+x=0
 client = xmlrpclib.ServerProxy('https://pypi.python.org/pypi')
 # get a list of package names
 packages = client.list_packages()
@@ -27,7 +26,9 @@ for i in packages:
           with open("Data.csv","a", newline='') as file:
                csv_file = csv.writer(file)
                csv_file.writerow([names,des,url,keyw])
+          x+=1
+          print(x)
      except:
-          print("Error")
+#           print("Error")
 
 print("Done")
